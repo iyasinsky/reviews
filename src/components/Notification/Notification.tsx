@@ -1,7 +1,5 @@
-import css from './Notification.module.css';
-
-const Notification = () => {
-  return <p className={css.message}>No feedback yet</p>;
-};
+const Notification = () => (
+  <p className="text-center text-gray-500 text-lg py-10">No feedback given</p>
+);
 
 export default Notification;

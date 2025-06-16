@@ -1,14 +1,7 @@
-import css from './Info.module.css';
-
-const Info = () => {
-  return (
-    <div className={css.container}>
-      <h1 className={css.title}>Sip Happens Café</h1>
-      <p className={css.description}>
-        Please rate our service by selecting one of the options below.
-      </p>
-    </div>
-  );
-};
+const Info = () => (
+  <h1 className="text-3xl font-bold text-center text-gray-800 mb-6">
+    Give Feedback
+  </h1>
+);
 
 export default Info;

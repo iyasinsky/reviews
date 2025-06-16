@@ -4,7 +4,6 @@ import Info from '../Info/Info';
 import Options from '../Options/Options';
 import Stats from '../Stats/Stats';
 import Notification from '../Notification/Notification';
-import css from './App.module.css';
 
 const App = () => {
   const [votes, setVotes] = useState<Votes>({
@@ -27,29 +26,27 @@ const App = () => {
       bad: 0,
     });
   };
-  const totalVotes = votes.good + votes.neutral + votes.bad;
+  const totalFeedback = votes.good + votes.neutral + votes.bad;
 
-  const positiveRate = totalVotes
-    ? Math.round((votes.good / totalVotes) * 100)
-    : 0;
+  const positivePercentage =
+    totalFeedback > 0 ? Math.round((votes.good / totalFeedback) * 100) : 0;
 
   return (
-    <div className={css.app}>
-      <Info />
-      <Options
-        onVote={handleVote}
-        onReset={resetVotes}
-        canReset={totalVotes > 0}
-      />
-      {totalVotes ? (
-        <Stats
-          votes={votes}
-          totalVotes={totalVotes}
-          positiveRate={positiveRate}
-        />
-      ) : (
-        <Notification />
-      )}
+    <div className="min-h-screen bg-gray-100 flex items-center justify-center p-4 font-sans antialiased">
+      <div className="bg-white p-8 rounded-lg shadow-xl max-w-md w-full">
+        <Info />
+        <Options handleVote={handleVote} />
+        {totalFeedback ? (
+          <Stats
+            votes={votes}
+            totalFeedback={totalFeedback}
+            positivePercentage={positivePercentage}
+            resetVotes={resetVotes}
+          />
+        ) : (
+          <Notification />
+        )}
+      </div>
     </div>
   );
 };
